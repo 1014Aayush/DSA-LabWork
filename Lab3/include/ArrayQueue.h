@@ -2,20 +2,34 @@
 #define ArrayQueue_h
 #include "Queue.h"
 
-class ArrayQueue : public Queue
+class ArrayQueue
 {
+private:
+    int size;
+    int *array;
+
 public:
-    ArrayQueue();
-    ~ArrayQueue();
+    ArrayQueue(int size)
+    {
+        this->front = -1;
+        this->rear = -1;
+        this->size = size;
+        this->array = new int[size];
+    };
+
+    ~ArrayQueue()
+    {
+        delete[] array;
+    };
+
     bool isEmpty();
-    void enqueue(int item);
+    void enqueue(int element);
     void dequeue();
     bool isFull();
-    void front();
-    void back();
-    void display();
-    int frontIndex;
-    int rearIndex;
+    int getFront();
+    int getRear();
+    int front;
+    int rear;
 };
 
 #endif

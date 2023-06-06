@@ -1,24 +1,39 @@
 #ifndef Queue_h
 #define Queue_h
-#define MAX_QUEUE_SIZE 5;
 
 class Queue
 {
-public:
-    Queue(){};
-    ~Queue(){};
-    virtual void enqueue(int item);
-    virtual void dequeue();
-    virtual bool isEmpty();
-    virtual bool isFull();
-    virtual void front();
-    virtual void back();
-    virtual void display();
-    int frontIndex;
-    int backIndex;
-
 private:
-    int Queue::queueArr[5];
+    struct Node
+    {
+        int data;
+        Node *next;
+    };
+
+    Node *front;
+    Node *rear;
+
+public:
+    Queue()
+    {
+        front = nullptr;
+        rear = nullptr;
+    };
+
+    ~Queue()
+    {
+        while (!isEmpty())
+        {
+            dequeue();
+        }
+    };
+
+    void enqueue(int element);
+    void dequeue();
+    bool isFull();
+    bool isEmpty();
+    int getFront();
+    int getRear();
 };
 
 #endif
